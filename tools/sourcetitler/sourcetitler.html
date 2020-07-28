@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>XML & HTML Comment Title Generator</title>
+    <title>Comment Title Generator</title>
     <style>
         body {
             background: black;
@@ -47,24 +47,55 @@
         }
     </style>
     <script>
+        const styles = {
+            'C-Style': ['/*', '*/'],
+            'C#-Style': ['//', '//'],
+            'XML / HTML': ['<!--', '-->'],
+            'Python': ['#', '#'],
+            'VB6': ["'", "'"],
+            'Lua': ['--[', ']--'],
+            'Assembly': [';', ';'],
+            'Batch': ['REM', '']
+        };
+
+        window.onload = function() {
+            let select = document.getElementById('style');
+            for(let style in styles) {
+                let opt = document.createElement('option');
+                opt.setAttribute('value', style);
+                opt.appendChild(document.createTextNode(`${styles[style][0]} ${style} ${styles[style][1]}`));
+                select.appendChild(opt);
+            }
+        }
+
+        function h(chr, amt) {
+            return chr.repeat(amt);
+        }
+
         function turboBallsack() {
             let colmw = +document.getElementById('cwidth').value;
             let align = document.getElementById('align').value;
-            let fchar = document.getElementById('fchar').value.charAt(0);
-            let title = document.getElementById('ttext').value;
+            let f = document.getElementById('fchar').value.charAt(0);
+            let title = ' ' + document.getElementById('ttext').value + ' ';
+            let s = styles[document.getElementById('style').value];
             let result = '';
-            
-            if(align == 'left') {
-                let fillAmt = colmw - 10 - title.length;
-                result = '<!-- ' + title + ' ' + fchar.repeat(fillAmt) + ' -->';
+
+            let l = s[0] + ' ';
+            let r = ' ' + s[1];
+            let ll = l.length;
+            let rl = r.length;
+
+            if (align == 'left') {
+                let a = colmw - (ll + rl) - title.length;
+                result = l + title + h(f, a) + r ;
             } else if (align == 'right') {
-                let fillAmt = colmw - 10 - title.length;
-                result = '<!-- ' + fchar.repeat(fillAmt) + ' ' + title + ' -->';
+                let a = colmw - (ll + rl) - title.length;
+                result = l + h(f, a) + title + r ;
             } else {
-                let fillAmtL = ((colmw / 2) - 5) - (title.length / 2);
-                result = '<!-- ' + fchar.repeat(fillAmtL) + ' ' + title + ' ';
-                let fillAmtR = (colmw - result.length) - 4;
-                result += fchar.repeat(fillAmtR) + ' -->';
+                let fillAmtL = ((colmw / 2) - ((ll + rl) / 2)) - (title.length / 2);
+                result = l + h(f, fillAmtL) + title;
+                let fillAmtR = (colmw - result.length) - rl;
+                result += h(f, fillAmtR) + r;
             }
 
             document.getElementById('output').value = result;
@@ -75,7 +106,7 @@
 </head>
 
 <body>
-    <h2>&lt;!-- ---- XML & HTML Comment Title Generator ---- --&gt;</h2>
+    <h2>&lt;!-- ---- Comment Title Generator ---- --&gt;</h2>
     <div class="box">
         <div class="form-parent">
             <form action="javascript:turboBallsack()">
@@ -84,6 +115,10 @@
 
                 <label for="fchar">Filler Character:</label><br>
                 <input type="text" id="fchar" name="fchar" value="-" maxlength="1"><br><br>
+
+                <label for="style">Comment Style:</label><br>
+                <select name="style" id="style">
+                </select><br><br>
 
                 <label for="cwidth">Column Width:</label><br>
                 <input type="number" id="cwidth" name="cwidth" value="80" maxlength="3"><br><br>
