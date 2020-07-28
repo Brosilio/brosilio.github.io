@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>XML & HTML Comment Title Generator</title>
+    <style>
+        body {
+            background: black;
+            color: red;
+            font-family: monospace;
+            font-size: 12pt;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .box {
+            margin: auto;
+            width: 50em;
+            min-width: 50em;
+            max-width: 90%;
+            border: 0.25em outset #D00;
+            padding: 1em;
+            background: #A00;
+            color: black;
+        }
+
+        .form-parent {
+            width: 100%;
+            margin: auto;
+        }
+
+        input {
+            font-size: 12pt;
+            font-family: monospace;
+        }
+
+        input#output {
+            width: 100%;
+            text-align: center;
+        }
+
+        select {
+            font-size: 12pt;
+            font-family: monospace;
+        }
+    </style>
+    <script>
+        function turboBallsack() {
+            let colmw = +document.getElementById('cwidth').value;
+            let align = document.getElementById('align').value;
+            let fchar = document.getElementById('fchar').value.charAt(0);
+            let title = document.getElementById('ttext').value;
+            let result = '';
+            
+            if(align == 'left') {
+                let fillAmt = colmw - 10 - title.length;
+                result = '<!-- ' + title + ' ' + fchar.repeat(fillAmt) + ' -->';
+            } else if (align == 'right') {
+                let fillAmt = colmw - 10 - title.length;
+                result = '<!-- ' + fchar.repeat(fillAmt) + ' ' + title + ' -->';
+            } else {
+                let fillAmtL = ((colmw / 2) - 5) - (title.length / 2);
+                result = '<!-- ' + fchar.repeat(fillAmtL) + ' ' + title + ' ';
+                let fillAmtR = (colmw - result.length) - 4;
+                result += fchar.repeat(fillAmtR) + ' -->';
+            }
+
+            document.getElementById('output').value = result;
+            document.getElementById('output').focus();
+            document.getElementById('output').select();
+        }
+    </script>
+</head>
+
+<body>
+    <h2>&lt;!-- ---- XML & HTML Comment Title Generator ---- --&gt;</h2>
+    <div class="box">
+        <div class="form-parent">
+            <form action="javascript:turboBallsack()">
+                <label for="ttext">Title Text:</label><br>
+                <input type="text" id="ttext" name="ttext" placeholder="Documentation"><br><br>
+
+                <label for="fchar">Filler Character:</label><br>
+                <input type="text" id="fchar" name="fchar" value="-" maxlength="1"><br><br>
+
+                <label for="cwidth">Column Width:</label><br>
+                <input type="number" id="cwidth" name="cwidth" value="80" maxlength="3"><br><br>
+
+                <label for="align">Alignment:</label><br>
+                <select name="align" id="align">
+                    <option value="center">Center</option>
+                    <option value="left">Left</option>
+                    <option value="right">Right</option>
+                </select><br><br>
+
+                <input type="submit" value="Generate"><br><br>
+
+                <label for="output">Output:</label><br>
+                <input type="text" id="output" name="output">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
