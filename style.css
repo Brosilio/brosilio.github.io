@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'fixedsys';
+    src: url('/r/f/fixedsys.eot');
+    src: url('/r/f/fixedsys.woff') format('woff'), url('/r/r/fixedsys.ttf') format('embedded-opentype'), url('/r/f/fixedsys.ttf') format('truetype'), url('/r/f/fixedsys.svg') format('svg');
+    font-display: swap;
+}
+
+body {
+    font-family: 'fixedsys';
+    background: black;
+    color: red;
+}
+
+.content-container {
+    margin: auto;
+    max-width: 80em;
+}
