@@ -19,12 +19,12 @@
 body {
     font-family: 'fixedsys';
     background: black;
-    color: lime;
+    color: red;
     font-size: 12pt;
 }
 
 a {
-    color: lime;
+    color: red;
 }
 
 h1, h2, h3 {
