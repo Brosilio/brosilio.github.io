@@ -1,11 +1,64 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>brosilio.github.io</title>
-		<script src="https://brosilio.github.io/CursorMess/src/frontend/cursormess.min.js"></script>
-        <link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-        welcome into my website
-	</body>
+
+<head>
+    <title>brosilio.github.io</title>
+    <script src="https://brosilio.github.io/CursorMess/src/frontend/cursormess.min.js"></script>
+    <script src="htmljs.js"></script>
+    <script>
+        window.onload = function () {
+            hjs.run();
+        }
+    </script>
+    <link rel="stylesheet" href="style.css" />
+    <noscript>
+        <style>
+            x-write {
+                display: initial;
+            }
+        </style>
+    </noscript>
+</head>
+
+<body>
+    <x-spinner speed="10" time="2000"></x-spinner>
+    <br/>
+
+    <x-write speed="25">Initializing</x-write><x-write speed="15" count="10">.</x-write>
+    <br>
+
+    <x-write speed="10">Ready.</x-write>
+    <br>
+
+    <x-sleep for="750"></x-sleep>
+    <br>
+
+    <x-write speed="25">root@brosil.io:~$ ls ./projects/</x-write>
+    <x-sleep for="250"></x-sleep>
+    <br>
+
+    <a href="https://github.com/brosilio/inventure/"><x-write speed="25">./projects/inventure/</x-write></a>
+    <x-sleep for="150"></x-sleep>
+    <br>
+
+    <a href="https://github.com/brosilio/cursormess/"><x-write speed="25">./projects/cursormess/</x-write></a>
+    <x-sleep for="150"></x-sleep>
+    
+    <br>
+    <br>
+    <x-write speed="25">root@brosil.io:~$ cat ./README.txt</x-write>
+    <x-sleep for="250"></x-sleep>
+    
+    <br>
+    <x-write speed="25">Visit my GitHub to see all my projects.</x-write>
+
+    <br>
+    <br>
+    <x-write speed="25">root@brosil.io:~$ ls ./tools/</x-write>
+    <x-sleep for="250"></x-sleep>
+    <br>
+
+    <a href="/tools/sourcetitler/"><x-write speed="25">./tools/sourcetitler/</x-write></a>
+</body>
+
 </html>

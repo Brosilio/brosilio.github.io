@@ -5,13 +5,41 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'vcr-osd';
+    src: url('/r/f/VCROSDMono.woff2') format('woff2');
+    src: url('/r/f/VCROSDMono.woff') format('woff'),
+         url('/r/f/VCROSDMono.eot?#iefix') format('embedded-opentype'),
+         url('/r/f/VCROSDMono.eot'),
+         url('/r/f/vcr-osd.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     font-family: 'fixedsys';
     background: black;
-    color: red;
+    color: lime;
+    font-size: 12pt;
+}
+
+a {
+    color: lime;
+}
+
+h1, h2, h3 {
+    font-family: 'vcr-osd';
+    font-size: 2.5em;
+    font-style: normal;
+    font-weight: normal;
 }
 
 .content-container {
     margin: auto;
-    max-width: 80em;
+    max-width: 60em;
+    font-size: 12pt;
+}
+
+x-write {
+    display: none;
 }
