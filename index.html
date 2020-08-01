@@ -2,63 +2,54 @@
 <html>
 
 <head>
-    <title>brosilio.github.io</title>
-    <script src="https://brosil.io/CursorMess/src/frontend/cursormess.min.js"></script>
-    <script src="htmljs.js"></script>
-    <script>
-        window.onload = function () {
-            hjs.run();
-        }
-    </script>
-    <link rel="stylesheet" href="style.css" />
-    <noscript>
-        <style>
-            x-write {
-                display: inline-block;
-            }
-        </style>
-    </noscript>
+	<title>brosil.io</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="come in, stay a while" />
+	<link rel="stylesheet" href="res/css/style.css" />
+	<script src="https://brosil.io/CursorMess/src/frontend/cursormess.min.js"></script>
+	<script src="res/js/man.js"></script>
+
 </head>
 
 <body>
-    <x-spinner speed="10" time="2000"></x-spinner>
-    <br/>
+	<div class="main-content-container">
+		<div style="margin-bottom: 5em;">
 
-    <x-write speed="25">Initializing</x-write><x-write speed="15" count="10">.</x-write>
-    <br>
+			<img class="clouds" src="res/img/cloud.png" />
+			<a href="javascript:man.think();">
+				<img class="floater" src="res/img/man.gif" />
+			</a>
+			<div class="textbubble" id="mantext">Welcome!</div>
+			<a href="">
+				<h1 class="fuck">WELCOME HOME</h1>
+			</a>
+			<div class="overlay"></div>
+			<img class="err" src="res/img/error01.png" />
+			<img class="asteroid" src="res/img/asteroid1.png" />
+			<a href="https://imlostinouter.space"><img class="asteroid" src="res/img/asteroid2.png"
+					style="top: 4em; right: 20em; width: 10em;" /></a>
+			<img src="res/img/moon.png"
+				style="position: absolute; top: 15em; left: 40%; transform: scale(4) rotate(-30deg); pointer-events: none; z-index: -9999;" />
+			<div style="margin-top: 15em; margin-bottom: 15em;"></div>
+		</div>
+		<div>
+			<div class="bring-in">
+				<a href="https://github.com/brosilio"><img onmouseover="man.speak('That\'s my GitHub!')" src="res/img/github.gif" style="transform: scale(3) rotate(23deg);" /></a>
+			</div>
 
-    <x-write speed="10">Ready.</x-write>
-    <br>
+			<div class="bring-in" style="display: block; margin-top: 4em; margin-left: 30%;">
+				<a href="javascript:alert('under construction!')"><img onmouseover='man.speak("\"Projects\"")' style="transform: scale(2) rotate(-15deg); margin-right: 2.5em;" src="res/img/floppy.gif" /></a>
+			</div>
 
-    <x-sleep for="750"></x-sleep>
-    <br>
+			<div class="bring-in" style="display: block; margin-top: 5em; margin-left: 75%;">
+				<a href="https://wheresmyfucking.delivery/"><img onmouseover="man.speak('Where\'s my delivery?')" class="bring-in" style="transform: scale(2);" src="res/img/box-small.gif" /></a>
+			</div>
 
-    <x-write speed="25">root@brosil.io:~$ ls ./projects/</x-write>
-    <x-sleep for="250"></x-sleep>
-    <br>
-
-    <a href="https://github.com/brosilio/inventure/"><x-write speed="25">./projects/inventure/</x-write></a>
-    <x-sleep for="150"></x-sleep>
-    <br>
-
-    <a href="https://github.com/brosilio/cursormess/"><x-write speed="25">./projects/cursormess/</x-write></a>
-    <x-sleep for="150"></x-sleep>
-    
-    <br>
-    <br>
-    <x-write speed="25">root@brosil.io:~$ cat ./README.txt</x-write>
-    <x-sleep for="250"></x-sleep>
-    
-    <br>
-    <x-write speed="25">Visit my GitHub to see all my projects.</x-write>
-
-    <br>
-    <br>
-    <x-write speed="25">root@brosil.io:~$ ls ./tools/</x-write>
-    <x-sleep for="250"></x-sleep>
-    <br>
-
-    <a href="/tools/sourcetitler/"><x-write speed="25">./tools/sourcetitler/</x-write></a>
+			<div class="bring-in" style="display: block; margin-top: 4em; margin-left: 45%;">
+				<a href="mailto:brosilio@youshouldfear.me"><img onmouseover="man.speak('E-mail me!')" class="bring-in" style="transform: scale(2) rotate(10deg);" src="res/img/mail.gif" /></a>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>
