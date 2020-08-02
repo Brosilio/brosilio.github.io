@@ -88,7 +88,7 @@ body {
   -ms-interpolation-mode: nearest-neighbor;
 }
 
-.main-content-container {
+.fire {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -101,7 +101,8 @@ body {
   right: 0;
   bottom: 0;
   padding-left: 5em;
-  overflow: scroll;
+  overflow: auto;
+  opacity: .75;
 }
 
 .floater {
@@ -124,9 +125,6 @@ h1 {
 }
 
 .fuck {
-  position: fixed;
-  top: 6em;
-  left: 1em;
   animation: fuck 1s infinite;
   color: white;
 }
@@ -143,7 +141,7 @@ a:hover {
   animation: fingers 0.25s infinite steps(4) alternate;
 }
 
-.overlay {
+.static-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -153,7 +151,7 @@ a:hover {
   background-repeat: repeat;
   background-size: 60em 20em;
   background-position: center;
-  opacity: 0.1;
+  opacity: 0.012;
   z-index: 9999;
   pointer-events: none;
 }
@@ -180,6 +178,11 @@ a:hover {
   }
 }
 
+.actual-content-container {
+  margin-left: 5em;
+  background: black url('../img/stars.gif');
+}
+
 @keyframes cloud {
   0% {
     transform: rotate(10deg) scale(2.0);
@@ -203,7 +206,7 @@ a:hover {
   opacity: .15;
   z-index: 6000;
   pointer-events: none;
-  animation: cloud 30s infinite linear;
+  animation: cloud 120s infinite ease;
 }
 
 @keyframes asteroid {

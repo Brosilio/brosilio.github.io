@@ -12,41 +12,46 @@
 </head>
 
 <body>
-	<div class="main-content-container">
+	<div class="static-overlay"></div>
+	<div class="fire">
+		<img src="res/img/moon.png"
+			style="position: absolute; top: 5em; left: 40%; transform: scale(4) rotate(-30deg); pointer-events: none; z-index: -9999;" />
+	</div>
+	<div class="actual-content-container">
+
 		<div style="margin-bottom: 5em;">
 
-			<img class="clouds" src="res/img/cloud.png" />
+			<!-- <img class="clouds" src="res/img/cloud.png" /> -->
 			<a href="javascript:man.think();">
 				<img class="floater" src="res/img/man.gif" />
 			</a>
-			<div class="textbubble" id="mantext">Welcome!</div>
 			<a href="">
 				<h1 class="fuck">WELCOME HOME</h1>
 			</a>
-			<div class="overlay"></div>
+			<div class="textbubble" id="mantext">Welcome!</div>
+
 			<img class="err" src="res/img/error01.png" />
-			<img class="asteroid" src="res/img/asteroid1.png" />
-			<a href="https://imlostinouter.space"><img class="asteroid" src="res/img/asteroid2.png"
-					style="top: 4em; right: 20em; width: 10em;" /></a>
-			<img src="res/img/moon.png"
-				style="position: absolute; top: 15em; left: 40%; transform: scale(4) rotate(-30deg); pointer-events: none; z-index: -9999;" />
-			<div style="margin-top: 15em; margin-bottom: 15em;"></div>
 		</div>
 		<div>
 			<div class="bring-in">
-				<a href="https://github.com/brosilio"><img onmouseover="man.speak('That\'s my GitHub!')" src="res/img/github.gif" style="transform: scale(3) rotate(23deg);" /></a>
-			</div>
-
-			<div class="bring-in" style="display: block; margin-top: 4em; margin-left: 30%;">
-				<a href="javascript:alert('under construction!')"><img onmouseover='man.speak("\"Projects\"")' style="transform: scale(2) rotate(-15deg); margin-right: 2.5em;" src="res/img/floppy.gif" /></a>
-			</div>
-
-			<div class="bring-in" style="display: block; margin-top: 5em; margin-left: 75%;">
-				<a href="https://wheresmyfucking.delivery/"><img onmouseover="man.speak('Where\'s my delivery?')" class="bring-in" style="transform: scale(2);" src="res/img/box-small.gif" /></a>
+				<a href="https://github.com/brosilio"><img onmouseover="man.speak('That\'s my GitHub!')"
+						src="res/img/github.gif" style="transform: scale(3) rotate(23deg);" /></a>
 			</div>
 
 			<div class="bring-in" style="display: block; margin-top: 4em; margin-left: 45%;">
-				<a href="mailto:brosilio@youshouldfear.me"><img onmouseover="man.speak('E-mail me!')" class="bring-in" style="transform: scale(2) rotate(10deg);" src="res/img/mail.gif" /></a>
+				<a href="mailto:brosilio@youshouldfear.me"><img onmouseover="man.speak('E-mail me!')" class="bring-in"
+						style="transform: scale(2) rotate(10deg);" src="res/img/mail.gif" /></a>
+			</div>
+
+			<div class="bring-in" style="display: block; margin-top: 5em; margin-left: 75%;">
+				<a href="https://wheresmyfucking.delivery/"><img onmouseover="man.speak('Where\'s my delivery?')"
+						class="bring-in" style="transform: scale(2);" src="res/img/box-small.gif" /></a>
+			</div>
+
+
+			<div class="bring-in" style="display: block; margin-top: 4em; margin-left: 30%;">
+				<a href="javascript:alert('under construction!')"><img onmouseover='man.speak("\"Projects\"")'
+						style="transform: scale(2) rotate(-15deg); margin-right: 2.5em;" src="res/img/floppy.gif" /></a>
 			</div>
 		</div>
 	</div>
