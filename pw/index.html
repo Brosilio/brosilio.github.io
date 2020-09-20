@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="passwd.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Password Generator</h2>
+        <form action="javascript:gen()">
+            <label for="pass">Master Password</label>
+            <input type="password" id="pass" name="pass" autofocus>
+
+            <label for="key">Key:</label>
+            <input type="text" id="key" name="key" placeholder="eg, google.com"><br><br>
+
+            <input type="submit" value="Generate"><br><br>
+
+            <label for="output">Output:</label><br>
+            <input type="text" onmouseup="return false" onfocus="this.select();" id="output" name="output"><br><br>
+        </form>
+    </div>
+
+    <div class="container2">
+        Using the same password everywhere is a terrible idea. By using this tool, you only need
+        to remember one master password to generate any number of unique, secure passwords
+        that only you have access to. It's important to note that you should NOT use your master
+        password anywhere except for here. If your master password were to be stolen, the
+        attacker would be able to find all your passwords. When generating a password for the first
+        time, double check that you entered the master password correctly. If you made a typo and didn't
+        notice, it's very unlikely that you'll find that password again.
+        <br>
+        <br>
+
+        It may be a good idea to use the domain name ("example.com") of the website you use a password
+        with as the key for that password. It's easier to remember that way. Maybe add a number to the end of it.
+        Just don't forget the number, or you're screwed.
+        <br>
+        <br>
+
+        This tool does NOT send any information anywhere; everything is done entirely in your browser.
+        It might be a good idea for you to download this website by clicking <a href="password_generator.zip">[here]</a>
+        to keep a local copy for yourself in case this site ever goes down.
+
+        <br>
+        <br>
+        Based on the SS64 password generator: <a href="https://ss64.com/pass/">https://ss64.com/pass/</a>, except this looks cooler.
+    </div>
+</body>
+
+</html>

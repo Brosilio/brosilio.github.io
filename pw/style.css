@@ -1,0 +1,60 @@
+::-moz-selection {
+    /* Code for Firefox */
+    color: black;
+    background: red;
+}
+
+::selection {
+    color: black;
+    background: red;
+}
+
+body {
+    background: black;
+    color: red;
+    font-family: monospace;
+}
+
+a {
+    color: red;
+}
+
+a:visited {
+    color: darkred;
+}
+
+.container {
+    margin: auto;
+    width: min-content;
+}
+
+.container2 {
+    margin: auto;
+    max-width: 40em;
+}
+
+input {
+    background: black;
+    color: red;
+    border: 1px solid darkred;
+    outline: none;
+    font-family: monospace;
+}
+
+input[type="text"], input[type="password"] {
+    width: 15em;
+}
+
+input:focus {
+    -webkit-box-shadow: 0px 0px 4px 2px red;
+    -moz-box-shadow: 0px 0px 4px 2px red;
+    box-shadow: 0px 0px 4px 2px red;
+}
+
+h2 {
+    text-align: center;
+}
+
+.cb input {
+    vertical-align: middle;
+}
