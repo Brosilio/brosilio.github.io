@@ -10,7 +10,7 @@
 
 <body>
     <div class="container">
-        <h2>Password Generator</h2>
+        <h2>Password Generator (v1)</h2>
         <form action="javascript:gen()">
             <label for="pass">Master Password</label>
             <input type="password" id="pass" name="pass" autofocus>
@@ -20,8 +20,17 @@
 
             <input type="submit" value="Generate"><br><br>
 
-            <label for="output">Output:</label><br>
-            <input type="text" onmouseup="return false" onfocus="this.select();" id="output" name="output"><br><br>
+			<label for="output64">Output (64 char):</label><br>
+            <input id="output64" name="output64" type="text" onfocus="this.select();" ><br><br>
+
+            <label for="output32">Output (32 char):</label><br>
+            <input id="output32" name="output32" type="text" onfocus="this.select();" ><br><br>
+			
+			<label for="output24">Output (24 char):</label><br>
+            <input id="output24" name="output24" type="text" onfocus="this.select();" ><br><br>
+			
+			<label for="output16">Output (16 char):</label><br>
+            <input id="output16" name="output16" type="text" onfocus="this.select();" ><br><br>
         </form>
     </div>
 

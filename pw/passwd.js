@@ -1,16 +1,21 @@
 function gen() {
     let key = document.getElementById("key").value;
     let pass = document.getElementById("pass").value;
-    let out = document.getElementById("output");
+    let out64 = document.getElementById("output64");
     let result = null;
 
     // ignore short, shitty passwords
     if (pass.length < 8 || key.length == 0) {
-        out.value = "master pass too short";
+        out64.value = "master pass too short";
         document.getElementById("pass").focus();
     } else {
-        out.value = b64_sha256(key + pass).substr(0, 32);
-        out.focus();
+		// copy paste > loops
+		document.getElementById("output64").value = b64_sha256(key + pass).substr(0, 64);
+        document.getElementById("output32").value = b64_sha256(key + pass).substr(0, 32);
+		document.getElementById("output24").value = b64_sha256(key + pass).substr(0, 24);
+		document.getElementById("output16").value = b64_sha256(key + pass).substr(0, 16);
+		
+        out64.focus();
     }
 }
 
