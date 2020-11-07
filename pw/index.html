@@ -16,21 +16,21 @@
             <input type="password" id="pass" name="pass" autofocus>
 
             <label for="key">Key:</label>
-            <input type="text" id="key" name="key" placeholder="eg, google.com"><br><br>
+            <input type="password" id="key" name="key" placeholder="eg, google.com"><br><br>
 
             <input type="submit" value="Generate"><br><br>
 
 			<label for="output64">Output (64 char):</label><br>
-            <input id="output64" name="output64" type="text" onfocus="this.select();" ><br><br>
+            <input id="output64" name="output64" type="password" onfocus="sip(this, false)" onblur="sip(this, true)" ><br><br>
 
             <label for="output32">Output (32 char):</label><br>
-            <input id="output32" name="output32" type="text" onfocus="this.select();" ><br><br>
+            <input id="output32" name="output32" type="password" onfocus="sip(this, false)" onblur="sip(this, true)" ><br><br>
 			
 			<label for="output24">Output (24 char):</label><br>
-            <input id="output24" name="output24" type="text" onfocus="this.select();" ><br><br>
+            <input id="output24" name="output24" type="password" onfocus="sip(this, false)" onblur="sip(this, true)" ><br><br>
 			
 			<label for="output16">Output (16 char):</label><br>
-            <input id="output16" name="output16" type="text" onfocus="this.select();" ><br><br>
+            <input id="output16" name="output16" type="password" onfocus="sip(this, false)" onblur="sip(this, true)" ><br><br>
         </form>
     </div>
 

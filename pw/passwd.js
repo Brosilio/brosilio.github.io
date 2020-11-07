@@ -19,6 +19,11 @@ function gen() {
     }
 }
 
+/* set is password */
+function sip(inputBox, isPassword) {
+    inputBox.type = isPassword ? "password" : "text";
+}
+
 window.onbeforeunload = function () { };
 
 /*
