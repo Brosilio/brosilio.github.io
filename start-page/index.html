@@ -17,6 +17,14 @@
 			color: red;
 		}
 
+		a {
+			color: red;
+		}
+
+		h2 {
+			margin-bottom: 0;
+		}
+
 		.box {
 			display: flex;
 			flex-direction: column;
@@ -26,7 +34,7 @@
 			min-height: 100vh;
 		}
 
-		input#search {
+		input.search {
 			background: black;
 			color: red;
 			border: 0.1em solid red;
@@ -35,54 +43,194 @@
 			font-family: inherit;
 			font-size: 1em;
 			min-width: 30em;
+			margin-top: 2em;
 		}
 
-		input#search:focus {
+		input.search:focus {
 			-webkit-box-shadow: 0em 0em 1em 0.1em red;
 			-moz-box-shadow: 0em 0em 1em 0.1em red;
 			box-shadow: 0em 0em 1em 0.1em red;
+		}
+
+		div#footer {
+			margin-top: 3em;
+		}
+
+		div#cmd-history {
+			text-align: left;
+			min-width: 30em;
+			margin-top: 0.25em;
 		}
 	</style>
 	<script>
 		var engine = "Google";
 		var url = "https://google.com/search?q=";
+		var omnibox = false;
+		var cmdShown = false;
+
+		window.onbeforeunload = function () {
+			document.getElementById("search").value = "";
+			document.getElementById("address").value = "";
+		}
 
 		window.onload = function () {
-			document.getElementById("search").focus();
+			//document.getElementById("search").focus();
+			document.getElementById("search").placeholder = "Search with " + engine + "...";
 
-			if (localStorage.getItem("engine") !== null) {
+			if (localStorage.getItem("startpage.engine") !== null) {
 				engine = localStorage.getItem("engine");
 			}
 
-			if (localStorage.getItem("url") !== null) {
+			if (localStorage.getItem("startpage.url") !== null) {
 				url = localStorage.getItem("url");
 			}
 
-			if (localStorage.getItem("hide-title") !== null) {
-				if(localStorage.getItem("hide-title")) {
-					document.getElementById("title").style.display = "none";
-				}
+			if (localStorage.getItem("startpage.hide-title") !== null) {
+				document.getElementById("title").style.display = "none";
+
 			}
 
-			document.getElementById('search').placeholder = "Search with " + engine + "...";
+			if (localStorage.getItem("startpage.hide-footer") !== null) {
+				document.getElementById("footer").style.display = "none";
+			}
+
+			if (localStorage.getItem("startpage.use-omnibox") !== null) {
+				document.getElementById("address").style.display = "none";
+				document.getElementById("search").placeholder = "Search with " + engine + " or enter an address...";
+			}
+
 		}
 
-		function handle(box, e) {
+		function global(e) {
+			if (e.keyCode == 27) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				cmdShown = !cmdShown;
+				if (cmdShown) {
+					document.getElementById("main").style.display = "none";
+					document.getElementById("command-prompt").style.display = "";
+					document.getElementById("cmd").focus();
+				} else {
+					document.getElementById("main").style.display = "";
+					document.getElementById("command-prompt").style.display = "none";
+					window.location.reload();
+				}
+			}
+		}
+
+		function search(box, e) {
 			if (e.keyCode == 13) {
 				e.preventDefault();
 				e.stopPropagation();
 
-				window.location.href = encodeURI(url + box.value);
+				if (omnibox) {
+					navigate(encodeURI(box.value), url);
+				} else {
+					navigate(encodeURI(url + box.value));
+				}
 				return;
 			}
+		}
+
+		function address(box, e) {
+			if (e.keyCode == 13) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				navigate(box.value);
+				return;
+			}
+		}
+
+		function command(box, e) {
+			if (e.keyCode == 13) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				let result = box.value.trim().toLowerCase();
+				switch (box.value.trim().toLowerCase()) {
+					// Omnibox
+					case "omnibox on":
+						localStorage.setItem("startpage.use-omnibox", "");
+						break;
+					case "omnibox off":
+						localStorage.removeItem("startpage.use-omnibox");
+						break;
+
+					// Title
+					case "show title":
+						localStorage.removeItem("startpage.hide-title");
+						break;
+					case "hide title":
+						localStorage.setItem("startpage.hide-title", "");
+						break;
+
+					// Footer
+					case "show footer":
+						localStorage.removeItem("startpage.hide-footer");
+						break;
+					case "hide footer":
+						localStorage.setItem("startpage.hide-footer", "");
+						break;
+
+					// Unknown
+					default:
+						result = "Unknown command.";
+						break;
+				}
+
+				document.getElementById("cmd-history").innerText += result + "\n";
+				box.value = "";
+				return;
+			}
+		}
+
+		function navigate(target, search) {
+			try {
+				let url = new URL(target);
+				window.location = url;
+			} catch {
+				console.log(search);
+				if (search !== undefined) {
+					window.location = encodeURI(search + target);
+				} else {
+					window.location = "http://" + target;
+				}
+			}
+
+			document.getElementById("status").style.display = "";
+			document.getElementById("main").style.display = "none";
 		}
 	</script>
 </head>
 
-<body onkeydown="document.getElementById('search').focus()">
-	<div class="box">
+<body onkeyup="global(event)">
+	<div id="main" class="box">
 		<h2 id="title">Ultimate Start Page</h2>
-		<input id="search" type="text" placeholder="Search with Google..." onkeyup="handle(this, event)" />
+		<input id="search" class="search" type="text" placeholder="Search with Google..."
+			onkeyup="search(this, event)" />
+		<input id="address" class="search" type="text" placeholder="Enter an address (http default)..."
+			onkeyup="address(this, event)" />
+
+		<div id="footer">
+			Other Stuff: <br />
+			<a href="http://pw.brosil.io/">Password Generator</a>
+		</div>
+	</div>
+
+	<div id="command-prompt" class="box" style="display: none;">
+		<input id="cmd" class="search" type="text" placeholder="Enter command" onkeyup="command(this, event)" />
+		<div id="cmd-history">
+			omnibox [on|off] - enable / disable omnibox mode<br>
+			[show|hide] title - show / hide the title<br>
+			[show|hide] footer - show / hide the footer<br>
+			-----<br>
+		</div>
+	</div>
+
+	<div id="status" class="box" style="display: none;">
+		...
 	</div>
 </body>
 
