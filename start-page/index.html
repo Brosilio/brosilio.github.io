@@ -95,6 +95,7 @@
 			}
 
 			if (localStorage.getItem("startpage.use-omnibox") !== null) {
+				omnibox = true;
 				document.getElementById("address").style.display = "none";
 				document.getElementById("search").placeholder = "Search with " + engine + " or enter an address...";
 			}
@@ -125,9 +126,9 @@
 				e.stopPropagation();
 
 				if (omnibox) {
-					navigate(encodeURI(box.value), url);
+					navigate(box.value, url);
 				} else {
-					navigate(encodeURI(url + box.value));
+					navigate(url + box.value);
 				}
 				return;
 			}
@@ -186,21 +187,49 @@
 			}
 		}
 
-		function navigate(target, search) {
-			try {
-				let url = new URL(target);
-				window.location = url;
-			} catch {
-				console.log(search);
-				if (search !== undefined) {
-					window.location = encodeURI(search + target);
+		function navigate(target, searchUrl) {
+			const hosts = ["localhost"];
+
+			if (searchUrl === undefined) {
+				if (!tryNav(target)) {
+					if (!tryNav("http://" + encodeURI(target))) {
+						return;
+					}
+				}
+			} else {
+				if (target.startsWith(' ')) {
+					if (!tryNav(searchUrl + encodeURI(target.trim()))) {
+						return;
+					}
 				} else {
-					window.location = "http://" + target;
+					if (target.includes('.') || hosts.includes(target.trim().toLowerCase())) {
+						if (!tryNav(target)) {
+							if (!tryNav("http://" + encodeURI(target.trim()))) {
+								return;
+							}
+						}
+					} else {
+						if (!tryNav(target.trim())) {
+							if (!tryNav(searchUrl + encodeURI(target))) {
+								return;
+							}
+						}
+					}
 				}
 			}
 
 			document.getElementById("status").style.display = "";
 			document.getElementById("main").style.display = "none";
+		}
+
+		function tryNav(target) {
+			try {
+				window.location = new URL(target);
+			} catch {
+				return false;
+			}
+
+			return true;
 		}
 	</script>
 </head>
