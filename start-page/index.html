@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Ultimate Start Page</title>
+	<style>
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-family: Consolas, 'Courier New', Courier, monospace;
+			;
+			background: black;
+			color: red;
+		}
+
+		.box {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			min-height: 100vh;
+		}
+
+		input#search {
+			background: black;
+			color: red;
+			border: 0.1em solid red;
+			padding: 0.25em;
+			outline: none;
+			font-family: inherit;
+			font-size: 1em;
+			min-width: 30em;
+		}
+
+		input#search:focus {
+			-webkit-box-shadow: 0em 0em 1em 0.1em red;
+			-moz-box-shadow: 0em 0em 1em 0.1em red;
+			box-shadow: 0em 0em 1em 0.1em red;
+		}
+	</style>
+	<script>
+		var engine = "Google";
+		var url = "https://google.com/search?q=";
+
+		window.onload = function () {
+			document.getElementById("search").focus();
+
+			if (localStorage.getItem("engine") !== null) {
+				engine = localStorage.getItem("engine");
+			}
+
+			if (localStorage.getItem("url") !== null) {
+				url = localStorage.getItem("url");
+			}
+
+			if (localStorage.getItem("hide-title") !== null) {
+				if(localStorage.getItem("hide-title")) {
+					document.getElementById("title").style.display = "none";
+				}
+			}
+
+			document.getElementById('search').placeholder = "Search with " + engine + "...";
+		}
+
+		function handle(box, e) {
+			if (e.keyCode == 13) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				window.location.href = encodeURI(url + box.value);
+				return;
+			}
+		}
+	</script>
+</head>
+
+<body onkeydown="document.getElementById('search').focus()">
+	<div class="box">
+		<h2 id="title">Ultimate Start Page</h2>
+		<input id="search" type="text" placeholder="Search with Google..." onkeyup="handle(this, event)" />
+	</div>
+</body>
+
+</html>
