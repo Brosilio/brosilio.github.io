@@ -1,4 +1,4 @@
-function gen() {
+function gen(noFocus) {
     let key = document.getElementById("key").value;
     let pass = document.getElementById("pass").value;
     let out64 = document.getElementById("output64");
@@ -6,22 +6,40 @@ function gen() {
 
     // ignore short, shitty passwords
     if (pass.length < 8 || key.length == 0) {
-        out64.value = "master pass too short";
+        alert("master password or key too short");
         document.getElementById("pass").focus();
     } else {
+        if(pass.endsWith(' ')) {
+            alert("your password ends with a space. did you intend to do that?");
+        }
+
+        if(key.endsWith(' ')) {
+            alert("your key ends with a space. did you intend to do that?");
+        }
+        
 		// copy paste > loops
 		document.getElementById("output64").value = b64_sha256(key + pass).substr(0, 64);
         document.getElementById("output32").value = b64_sha256(key + pass).substr(0, 32);
 		document.getElementById("output24").value = b64_sha256(key + pass).substr(0, 24);
 		document.getElementById("output16").value = b64_sha256(key + pass).substr(0, 16);
-		
-        out64.focus();
+        
+        if(!noFocus) {
+            out64.focus();
+        }
     }
 }
 
 /* set is password */
-function sip(inputBox, isPassword) {
+function sip(inputBox, isPassword, select) {
     inputBox.type = isPassword ? "password" : "text";
+
+    if(select === undefined || select) {
+        inputBox.select();
+    }
+}
+
+function showPw(checkbox, targetId) {
+    document.getElementById(targetId).type = checkbox.checked ? "text" : "password";
 }
 
 window.onbeforeunload = function () { };

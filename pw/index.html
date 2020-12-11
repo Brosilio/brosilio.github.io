@@ -12,25 +12,61 @@
     <div class="container">
         <h2>Password Generator (v1)</h2>
         <form action="javascript:gen()">
-            <label for="pass">Master Password</label>
-            <input type="password" id="pass" name="pass" autofocus>
-
-            <label for="key">Key:</label>
-            <input type="password" id="key" name="key" placeholder="eg, google.com"><br><br>
-
-            <input type="submit" value="Generate"><br><br>
-
-			<label for="output64">Output (64 char):</label><br>
-            <input id="output64" name="output64" type="password" onfocus="sip(this, false)" onblur="sip(this, true)" ><br><br>
-
-            <label for="output32">Output (32 char):</label><br>
-            <input id="output32" name="output32" type="password" onfocus="sip(this, false)" onblur="sip(this, true)" ><br><br>
-			
-			<label for="output24">Output (24 char):</label><br>
-            <input id="output24" name="output24" type="password" onfocus="sip(this, false)" onblur="sip(this, true)" ><br><br>
-			
-			<label for="output16">Output (16 char):</label><br>
-            <input id="output16" name="output16" type="password" onfocus="sip(this, false)" onblur="sip(this, true)" ><br><br>
+            <table>
+                <tr>
+                    <td>
+                        <label for="pass">Master Password</label>
+                        <input type="password" id="pass" name="pass" autofocus>
+                    </td>
+                    <td>
+                        <label for="show-pass">Show</label>
+                        <input type="checkbox" id="show-pass" name="show-pass" onclick="showPw(this, 'pass')">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="key">Key:</label>
+                        <input type="password" id="key" name="key" placeholder="eg, google.com">
+                    </td>
+                    <td>
+                        <label for="show-key" class="inline">Show</label>
+                        <input type="checkbox" id="show-key" name="show-key" onclick="showPw(this, 'key')">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Generate">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="output64">Output (64 char):</label><br>
+                        <input id="output64" name="output64" type="password" onfocus="sip(this, false)"
+                            onblur="sip(this, true, false)" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="output32">Output (32 char):</label><br>
+                        <input id="output32" name="output32" type="password" onfocus="sip(this, false)"
+                            onblur="sip(this, true, false)" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="output24">Output (24 char):</label><br>
+                        <input id="output24" name="output24" type="password" onfocus="sip(this, false)"
+                            onblur="sip(this, true, false)" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="output16">Output (16 char):</label><br>
+                        <input id="output16" name="output16" type="password" onfocus="sip(this, false)"
+                            onblur="sip(this, true, false)" readonly>
+                    </td>
+                </tr>
+            </table>
         </form>
     </div>
 
@@ -57,7 +93,8 @@
 
         <br>
         <br>
-        Based on the SS64 password generator: <a href="https://ss64.com/pass/">https://ss64.com/pass/</a>, except this looks cooler.
+        Based on the SS64 password generator: <a href="https://ss64.com/pass/">https://ss64.com/pass/</a>, except this
+        looks cooler.
         Their explanation of why this is a good idea is much better than mine, so it's probably worth heading over
         there to read it for yourself.
     </div>
