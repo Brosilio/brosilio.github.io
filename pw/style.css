@@ -42,7 +42,7 @@ input, button {
 }
 
 input[type="text"], input[type="password"] {
-    width: 18em;
+    width: 30em;
 }
 
 input:focus {
